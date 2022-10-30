@@ -1,0 +1,54 @@
+# Copyright (C) 2017 NVIDIA Corporation.  All rights reserved.
+# Licensed under the CC BY-NC-SA 4.0 license (https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode).
+
+# logger options 记录器选项
+image_save_iter: 1000         # How often do you want to save output images during training 您希望在培训期间多久保存一次输出图像
+image_display_iter:  10      # How often do you want to display output images during training 您希望在培训期间多久显示一次输出图像
+display_size: 8              # How many images do you want to display each time  每次要显示多少图像
+snapshot_save_iter: 10000     # How often do you want to save trained models 您希望多久保存一次经过培训的模型
+log_iter: 1                   # How often do you want to log the training stats 你希望多长时间记录一次训练数据
+
+# optimization options 优化选项
+max_iter: 1000000             # maximum number of training iterations 最大训练迭代次数
+batch_size: 1                 # batch size 批量大小
+weight_decay: 0.0001          # weight decay 权值衰减
+beta1: 0.5                    # Adam parameter
+beta2: 0.999                  # Adam parameter
+init: kaiming                 # initialization [gaussian/kaiming/xavier/orthogonal]  权重初始化使用Kaiming初始化，高斯在训练深层网络时容易陷入梯度消失情况
+lr: 0.0001                    # initial learning rate 初始化学习率
+lr_policy: step               # learning rate scheduler 学习速率调度器
+step_size: 100000             # how often to decay learning rate 学习率多久下降一次
+gamma: 0.5                    # how much to decay learning rate 学习率下降多少
+gan_w: 1                      # weight of adversarial loss 对抗性损失的权重
+recon_x_w: 10                 # weight of image reconstruction loss 图像重建损失的权重
+recon_h_w: 0                  # weight of hidden reconstruction loss 隐性重建损失的权重
+recon_kl_w: 0.01              # weight of KL loss for reconstruction 用于重建的KL损失重量
+recon_x_cyc_w: 10             # weight of cycle consistency loss 循环一致性损失的权重
+recon_kl_cyc_w: 0.01          # weight of KL loss for cycle consistency 循环一致性的KL损失重量
+vgg_w:   0                    # weight of domain-invariant perceptual loss 域不变感知损失的权重
+
+# model options
+gen:
+  dim: 64                     # number of filters in the bottommost layer 最底层的过滤器数量
+  activ: prelu                 # activation function [relu/lrelu/prelu/selu/tanh]relu
+  n_downsample: 2             # number of downsampling layers in content encoder 内容编码器中的下采样层数
+  n_res: 4                    # number of residual blocks in content encoder/decoder 内容编码器/解码器中的剩余块数
+  pad_type: reflect           # padding type [zero/reflect]
+dis:
+  dim: 64                     # number of filters in the bottommost layer
+  norm: none                  # normalization layer [none/bn/in/ln]  不使用归一化层
+  activ: prelu                # activation function [relu/lrelu/prelu/selu/tanh]lrelu
+  n_layer: 4                  # number of layers in D 鉴别器层数
+  gan_type: lsgan             # GAN loss [lsgan/nsgan]
+  num_scales: 3               # number of scales
+  pad_type: reflect           # padding type [zero/reflect]
+
+# data options
+input_dim_a: 3                              # number of image channels [1/3]
+input_dim_b: 3                              # number of image channels [1/3]
+num_workers: 0                              # number of data loading threads 数据加载线程数
+new_size: 256                             # first resize the shortest image side to this size 首先，将最短的图像边调整为此大小
+crop_image_height: 256                      # random crop image of this height 随机裁剪这个高度的图像
+crop_image_width: 256                       # random crop image of this width
+
+data_root: E:\hyd\图像增强论文\py\图像增强\2021_EnlightenGAN-master\final_dataset    # dataset folder location 数据集文件夹位置./datasets/lol/
