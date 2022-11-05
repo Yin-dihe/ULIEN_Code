@@ -21,7 +21,7 @@ def lowlight(image_path):
     ULIEN_net.load_state_dict(torch.load('snapshots/Epoch99.pth'))
 
     r, g, b = data_lowlight[0][0] + 1, data_lowlight[0][1] + 1, data_lowlight[0][2] + 1
-    A_gray = 1. - (0.299 * r + 0.587 * g + 0.114 * b) / 2.
+    A_gray = 1. - (0.299 * r + 0.587 * g + 0.114 * b)
     A_gray = torch.unsqueeze(A_gray, 0)
     A_gray = torch.unsqueeze(A_gray, 0)
 
