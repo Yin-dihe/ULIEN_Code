@@ -57,7 +57,7 @@ def train(config):
 
             for i in range(img_lowlight.shape[0]):
                 r, g, b = img_lowlight.data[i][0] + 1, img_lowlight.data[i][1] + 1, img_lowlight.data[i][2] + 1
-                A_gray = 1. - (0.299 * r + 0.587 * g + 0.114 * b) / 2.
+                A_gray = 1. - (0.299 * r + 0.587 * g + 0.114 * b)
                 A_gray = torch.unsqueeze(A_gray, 0)
                 A_gray = torch.unsqueeze(A_gray, 0)
                 # A_gray=1.-A_gray;
